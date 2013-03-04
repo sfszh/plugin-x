@@ -58,8 +58,8 @@ else
 fi
 
 #invoke ant build of plugin
-${ANT_PATH}/bin/ant -q clean
-${ANT_PATH}/bin/ant -q plugin-publish
+${ANT_PATH}/ant -q clean
+${ANT_PATH}/ant -q plugin-publish
 
 #copy .jar files to target directory
 mkdir -p ${TARGET_DIR}/android

@@ -8,10 +8,17 @@ changeDirFormat()
     TEMP="${1/:/}"
     if [ $1 != $TEMP ]; then
         RET=/cygdrive/$TEMP
-        echo $RET
     else
-        echo $1
+        RET=$1
     fi
+    
+    RET="${RET//\\//}"
+    END_CHAR=${RET:$((${#RET}-1)):1}
+    if [ ${END_CHAR} = "/" ]; then
+        RET=${RET%/}
+    fi
+    
+    echo "${RET}"
 }
 
 pushd $BUILD_PATH_FILE_DIR
@@ -26,6 +33,7 @@ if [ ! -f $BUILD_PATH_FILE_NAME ];then
         echo "Please input the android-ndk path:"
         read ANDROID_NDK_PATH
         ANDROID_NDK_PATH="$(changeDirFormat ${ANDROID_NDK_PATH})"
+        echo ${ANDROID_NDK_PATH}
         if [ -d "$ANDROID_NDK_PATH" ];then
             echo "Get ANDROID_NDK_ROOT=$ANDROID_NDK_PATH"
             echo
@@ -51,7 +59,7 @@ if [ ! -f $BUILD_PATH_FILE_NAME ];then
 
     while true
     do
-        echo "Please input the ant install path:"
+        echo "Please input the ant tool path(such as '/Users/MyAccount/tools/ant/bin'):"
         read ANT_PATH
         ANT_PATH="$(changeDirFormat ${ANT_PATH})"
         if [ -d "$ANT_PATH" ];then
