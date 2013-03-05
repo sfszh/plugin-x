@@ -18,6 +18,8 @@ class step1(step):
         
         step_tip = Label(self.stepFrame, text="Input the android project path of your game:")
         step_tip.pack(anchor='nw', padx=30)
+        step_tip2 = Label(self.stepFrame, text="(Please keep your game project path away from spaces)")
+        step_tip2.pack(anchor='nw', padx=30)
         self.step_entry = Entry(self.stepFrame)
         self.step_entry.pack(anchor='nw', fill=X, padx=30)
         return
