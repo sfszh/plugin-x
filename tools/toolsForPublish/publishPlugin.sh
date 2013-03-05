@@ -35,6 +35,18 @@ getLibraryFileName()
     echo ${LIB_FILENAME}
 }
 
+getPathForAnt()
+{
+    START_WITH_CYGWIN=`echo $1 | grep '^/cygdrive/'`
+    if [ -z "${START_WITH_CYGWIN}" ]; then
+        echo "$1"
+    else
+        RET=${START_WITH_CYGWIN#/cygdrive/}
+        RET=${RET/\//:/}
+        echo "${RET}"
+    fi
+}
+
 echo
 echo "Publish plugin for android"
 
@@ -45,16 +57,20 @@ LOACL_FILE_NAME=local.properties
 if [ -f ${LOACL_FILE_NAME} ]; then
     DEFINED_SDK_DIR=`grep sdk.dir= ./${LOACL_FILE_NAME}`
     if [ -z "${DEFINED_SDK_DIR}" ]; then
-        echo "sdk.dir=${INPUT_SDK_PATH}" >> ${LOACL_FILE_NAME}
+        ANT_SDK_DIR="$(getPathForAnt ${INPUT_SDK_PATH})"
+        echo "sdk.dir=${ANT_SDK_DIR}" >> ${LOACL_FILE_NAME}
     fi
     
     DEFINED_PLUGIN_DIR=`grep plugin.dir= ./${LOACL_FILE_NAME}`
     if [ -z "${DEFINED_PLUGIN_DIR}" ]; then
-        echo "plugin.dir=${PLUGIN_ROOT}" >> ${LOACL_FILE_NAME}
+        ANT_PLUGIN_ROOT_DIR="$(getPathForAnt ${PLUGIN_ROOT})"
+        echo "plugin.dir=${ANT_PLUGIN_ROOT_DIR}" >> ${LOACL_FILE_NAME}
     fi
 else
-    echo "sdk.dir=${INPUT_SDK_PATH}" > ${LOACL_FILE_NAME}
-    echo "plugin.dir=${PLUGIN_ROOT}" >> ${LOACL_FILE_NAME}
+    ANT_SDK_DIR="$(getPathForAnt ${INPUT_SDK_PATH})"
+    echo "sdk.dir=${ANT_SDK_DIR}" > ${LOACL_FILE_NAME}
+    ANT_PLUGIN_ROOT_DIR="$(getPathForAnt ${PLUGIN_ROOT})"
+    echo "plugin.dir=${ANT_PLUGIN_ROOT_DIR}" >> ${LOACL_FILE_NAME}
 fi
 
 #invoke ant build of plugin
