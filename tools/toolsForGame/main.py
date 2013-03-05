@@ -82,7 +82,7 @@ def nextStep():
             i += 1
         
         # process shell script to modify the game project
-        ret = os.system('./toolsForGame/addPluginForGame.sh ' + projPath + ' ' + strPlugins)
+        ret = os.system('bash ./toolsForGame/addPluginForGame.sh ' + projPath + ' ' + strPlugins)
         
         if ret != 0:
             # enable buttons after process

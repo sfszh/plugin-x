@@ -18,6 +18,18 @@ else
     exit 1
 fi
 
+getPathForSystem()
+{
+    START_WITH_CYGWIN=`echo $1 | grep '^/cygdrive/'`
+    if [ -z "${START_WITH_CYGWIN}" ]; then
+        echo "$1"
+    else
+        RET=${START_WITH_CYGWIN#/cygdrive/}
+        RET=${RET/\//:/}
+        echo "${RET}"
+    fi
+}
+
 pushd ${SHELL_DIR}/../
 
 source ./config.sh
@@ -35,17 +47,22 @@ if [ -d "${TARGET_ROOT}" ]; then
     APP_MK_FILE_PATH="${GAME_PROJECT_DIR}"/jni/Application.mk
     ${SHELL_DIR}/modifyAppMk.sh "${APP_MK_FILE_PATH}"
     
+    # get system dir
+    SYS_TARGET_ROOT=$(getPathForSystem ${TARGET_ROOT})
+    SYS_SHELL_DIR=$(getPathForSystem ${SHELL_DIR})
+    SYS_PROJ_DIR=$(getPathForSystem ${GAME_PROJECT_DIR})
+    
     # Modify .project file (link publish directory to the game project)
-    PROJECT_FILE_PATH="${GAME_PROJECT_DIR}"/.project
-    python ${SHELL_DIR}/modifyProject.py "${PROJECT_FILE_PATH}" "${TARGET_ROOT}"
+    PROJECT_FILE_PATH="${SYS_PROJ_DIR}"/.project
+    python ${SYS_SHELL_DIR}/modifyProject.py "${PROJECT_FILE_PATH}" "${SYS_TARGET_ROOT}"
     
     # Modify .classpath file (link jar files for game project)
-    CLASSPATH_FILE="${GAME_PROJECT_DIR}"/.classpath
-    python ${SHELL_DIR}/modifyClassPath.py "${CLASSPATH_FILE}" "${NEED_PUBLISH}" "${TARGET_ROOT}"
+    CLASSPATH_FILE="${SYS_PROJ_DIR}"/.classpath
+    python ${SYS_SHELL_DIR}/modifyClassPath.py "${CLASSPATH_FILE}" "${NEED_PUBLISH}" "${SYS_TARGET_ROOT}"
     
     # Modify AndroidManifest.xml file (add permission & add activity info)
-    MANIFEST_FILE="${GAME_PROJECT_DIR}"/AndroidManifest.xml
-    python ${SHELL_DIR}/modifyManifest.py "${MANIFEST_FILE}" "$2" "${TARGET_ROOT}"
+    MANIFEST_FILE="${SYS_PROJ_DIR}"/AndroidManifest.xml
+    python ${SYS_SHELL_DIR}/modifyManifest.py "${MANIFEST_FILE}" "$2" "${SYS_TARGET_ROOT}"
 else
     echo "PLZ run the publish.sh script first"
     popd
