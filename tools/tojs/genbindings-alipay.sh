@@ -75,7 +75,7 @@ echo -e "$_CONTENTS"
 echo -e "$_CONTENTS" > "$_CONF_INI_FILE"
 echo ---
 
-# Generate bindings for cocos2dx
-echo "Generating bindings for plugin-x ..."
+# Generate bindings for plugin-x alipay
+echo "Generating bindings for plugin-x alipay..."
 set -x
-LD_LIBRARY_PATH=${CLANG_ROOT}/lib $PYTHON_BIN ${CXX_GENERATOR_ROOT}/generator.py ${TO_JS_ROOT}/plugin-x.ini -s plugin-x -o $PLUGINX_ROOT/jsbindings/auto
+LD_LIBRARY_PATH=${CLANG_ROOT}/lib $PYTHON_BIN ${CXX_GENERATOR_ROOT}/generator.py ${PLUGINX_ROOT}/alipay/jsb_alipay.ini -s alipay -o $PLUGINX_ROOT/jsbindings/auto

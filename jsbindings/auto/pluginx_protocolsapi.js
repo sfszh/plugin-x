@@ -1,12 +1,12 @@
 /**
- * @module pluginx
+ * @module pluginx_protocols
  */
-var pluginx = pluginx = pluginx || {};
+var plugin = plugin = plugin || {};
 
 /**
  * @class PluginProtocol
  */
-pluginx.PluginProtocol = {
+plugin.PluginProtocol = {
 
 /**
  * @method setUserData
@@ -49,7 +49,7 @@ setDebugMode : function () {},
 /**
  * @class PluginManager
  */
-pluginx.PluginManager = {
+plugin.PluginManager = {
 
 /**
  * @method unloadPlugin
@@ -78,9 +78,95 @@ getInstance : function () {},
 };
 
 /**
+ * @class ProtocolAnalytics
+ */
+plugin.ProtocolAnalytics = {
+
+/**
+ * @method logTimedEventBegin
+ * @param {const char*}
+ */
+logTimedEventBegin : function () {},
+
+/**
+ * @method logError
+ * @param {const char*}
+ * @param {const char*}
+ */
+logError : function () {},
+
+/**
+ * @method setCaptureUncaughtException
+ * @param {bool}
+ */
+setCaptureUncaughtException : function () {},
+
+/**
+ * @method getPluginName
+ * @return A value converted from C/C++ "const char*"
+ */
+getPluginName : function () {},
+
+/**
+ * @method getPluginVersion
+ * @return A value converted from C/C++ "const char*"
+ */
+getPluginVersion : function () {},
+
+/**
+ * @method logEvent
+ * @param {const char*}
+ * @param {LogEventParamMap*}
+ */
+logEvent : function () {},
+
+/**
+ * @method setSessionContinueMillis
+ * @param {long}
+ */
+setSessionContinueMillis : function () {},
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ */
+init : function () {},
+
+/**
+ * @method startSession
+ * @param {const char*}
+ */
+startSession : function () {},
+
+/**
+ * @method stopSession
+ */
+stopSession : function () {},
+
+/**
+ * @method logTimedEventEnd
+ * @param {const char*}
+ */
+logTimedEventEnd : function () {},
+
+/**
+ * @method getSDKVersion
+ * @return A value converted from C/C++ "const char*"
+ */
+getSDKVersion : function () {},
+
+/**
+ * @method setDebugMode
+ * @param {bool}
+ */
+setDebugMode : function () {},
+
+};
+
+/**
  * @class ProtocolIAP
  */
-pluginx.ProtocolIAP = {
+plugin.ProtocolIAP = {
 
 /**
  * @method initDeveloperInfo
@@ -130,115 +216,5 @@ getPluginName : function () {},
  * @param {const char*}
  */
 payResult : function () {},
-
-};
-
-/**
- * @class IAPAlipay
- */
-pluginx.IAPAlipay = {
-
-/**
- * @method getPluginName
- * @return A value converted from C/C++ "const char*"
- */
-getPluginName : function () {},
-
-/**
- * @method getPluginVersion
- * @return A value converted from C/C++ "const char*"
- */
-getPluginVersion : function () {},
-
-/**
- * @method init
- * @return A value converted from C/C++ "bool"
- */
-init : function () {},
-
-/**
- * @method initDeveloperInfo
- * @param {TDeveloperInfo}
- */
-initDeveloperInfo : function () {},
-
-/**
- * @method payForProduct
- * @param {TProductInfo}
- */
-payForProduct : function () {},
-
-/**
- * @method getSDKVersion
- * @return A value converted from C/C++ "const char*"
- */
-getSDKVersion : function () {},
-
-/**
- * @method setDebugMode
- * @param {bool}
- */
-setDebugMode : function () {},
-
-/**
- * @method createPlugin
- * @return A value converted from C/C++ "cocos2d::plugin::PluginProtocol*"
- */
-createPlugin : function () {},
-
-};
-
-/**
- * @class IAPNd91
- */
-pluginx.IAPNd91 = {
-
-/**
- * @method getPluginName
- * @return A value converted from C/C++ "const char*"
- */
-getPluginName : function () {},
-
-/**
- * @method getPluginVersion
- * @return A value converted from C/C++ "const char*"
- */
-getPluginVersion : function () {},
-
-/**
- * @method init
- * @return A value converted from C/C++ "bool"
- */
-init : function () {},
-
-/**
- * @method initDeveloperInfo
- * @param {TDeveloperInfo}
- */
-initDeveloperInfo : function () {},
-
-/**
- * @method payForProduct
- * @param {TProductInfo}
- */
-payForProduct : function () {},
-
-/**
- * @method getSDKVersion
- * @return A value converted from C/C++ "const char*"
- */
-getSDKVersion : function () {},
-
-/**
- * @method setDebugMode
- * @param {bool}
- */
-setDebugMode : function () {},
-
-/**
- * @method createPlugin
- * @return A value converted from C/C++ "cocos2d::plugin::PluginProtocol*"
- */
-createPlugin : function () {},
 
 };

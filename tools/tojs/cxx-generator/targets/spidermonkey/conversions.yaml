@@ -1,9 +1,9 @@
 definitions:
   # the names of the functions - we use this to generate the code and to register the functions in
   # the javascript class
-  ifunction: "js_${generator.prefix}_${class_name}_${func_name}"
-  sfunction: "js_${generator.prefix}_${class_name}_${func_name}"
-  constructor: "js_${generator.prefix}_${class_name}_constructor"
+  ifunction: "js_${class_name}_${func_name}"
+  sfunction: "js_${class_name}_${func_name}"
+  constructor: "js_${class_name}_constructor"
 conversions:
   # some times you want to use a special native type when converting from spidermonkey to native
   # the most common case would be from JS-boolean to bool. Using "bool" will fail here since we
@@ -46,7 +46,12 @@ conversions:
       ${($level + 0) * '\t'}} while (0)
     TProductInfo: "ok &= jsval_to_TProductInfo(cx, ${in_value}, &${out_value})"
     TDeveloperInfo: "ok &= jsval_to_TDeveloperInfo(cx, ${in_value}, &${out_value})"
-    LogEventParamMap*: "ok &= jsval_to_LogEventParamMap(cx, ${in_value}, &${out_value})"
+    LogEventParamMap*: |
+      LogEventParamMap ${out_value}_tmp;
+      ${($level + 0) * '\t'}do {
+      ${($level + 1) * '\t'}ok &= jsval_to_LogEventParamMap(cx, ${in_value}, &${out_value});
+      ${($level + 1) * '\t'}if (ok) { ${out_value}_tmp = *${out_value}; delete ${out_value}; ${out_value} = &${out_value}_tmp; } else { ${out_value} = NULL; }
+      ${($level + 0) * '\t'}} while(0)
     long: "ok &= jsval_to_long(cx, ${in_value}, (long *)&${out_value})"
 
   from_native:

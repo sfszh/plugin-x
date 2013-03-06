@@ -8,7 +8,9 @@
 #include "js_bindings_chipmunk_registration.h"
 #include "js_bindings_system_registration.h"
 #include "js_bindings_ccbreader.h"
-#include "pluginx.hpp"
+#include "pluginx_protocols.hpp"
+#include "pluginx_alipay.hpp"
+#include "pluginx_nd91.hpp"
 #include "jsb_pluginx_extension_registration.h"
 
 USING_NS_CC;
@@ -41,9 +43,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     sc->addRegisterCallback(register_CCBuilderReader);
     sc->addRegisterCallback(jsb_register_chipmunk);
     sc->addRegisterCallback(jsb_register_system);
-    sc->addRegisterCallback(register_all_pluginx);
+    sc->addRegisterCallback(register_all_pluginx_protocols);
+    sc->addRegisterCallback(register_all_pluginx_alipay);
+    sc->addRegisterCallback(register_all_pluginx_nd91);
     sc->addRegisterCallback(register_pluginx_js_extensions);
-    
+
     sc->start();
     
     CCScriptEngineProtocol *pEngine = ScriptingCore::getInstance();
