@@ -4,6 +4,16 @@ pushd ${SHELL_DIR}
 
 source ./config.sh
 
+if [ -d ${TARGET_ROOT} ]; then
+    rm -rf ${TARGET_ROOT}
+fi
+mkdir -p ${TARGET_ROOT}
+
+#check the environment
+./toolsForPublish/checkEnvironment.sh
+source ./toolsForPublish/environment.sh
+
+# output the number of plugins
 if [ $1 ]; then
     plugins=(${1//:/ })
 else
@@ -14,15 +24,6 @@ length=${#plugins[@]}
 echo
 echo Now have $((${#plugins[@]}-1)) plugins
 echo
-
-if [ -d ${TARGET_ROOT} ]; then
-    rm -rf ${TARGET_ROOT}
-fi
-mkdir -p ${TARGET_ROOT}
-
-#check the environment
-./toolsForPublish/checkEnvironment.sh
-source ./toolsForPublish/environment.sh
 
 #publish plugins
 for plugin_name in ${plugins[@]}
