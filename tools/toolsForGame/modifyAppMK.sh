@@ -12,7 +12,7 @@ if [ -f ${MK_FILE_PATH} ]; then
     {
         if (match($0, /^([\s]*[^#]*)APP_STL[\s]*/))
         {
-            printf "APP_STL := ﻿gnustl_static\n";
+            printf "APP_STL := gnustl_static\n";
             addSTL = 0;
         } else
         if (match($0, /^([\s]*[^#]*)-frtti/))
@@ -27,7 +27,7 @@ if [ -f ${MK_FILE_PATH} ]; then
     END {
         if (addSTL)
         {
-            printf "APP_STL := ﻿gnustl_static\n";
+            printf "APP_STL := gnustl_static\n";
         }
         
         if (addRTTI)

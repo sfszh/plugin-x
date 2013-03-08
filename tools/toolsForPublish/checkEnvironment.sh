@@ -33,7 +33,6 @@ if [ ! -f $BUILD_PATH_FILE_NAME ];then
         echo "Please input the android-ndk path:"
         read ANDROID_NDK_PATH
         ANDROID_NDK_PATH="$(changeDirFormat ${ANDROID_NDK_PATH})"
-        echo ${ANDROID_NDK_PATH}
         if [ -d "$ANDROID_NDK_PATH" ];then
             echo "Get ANDROID_NDK_ROOT=$ANDROID_NDK_PATH"
             echo
