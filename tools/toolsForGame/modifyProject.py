@@ -36,7 +36,7 @@ if nodeLinkRes != None:
                 break
     if not haveTarget:
         nodeLinkRes.append(getLinkElement())
-        writeFile(projFile, root)
+        tree.write(projFile, 'UTF-8')
 else:
     linkResEle = ET.Element('linkedResources')
     linkResEle.append(getLinkElement())
