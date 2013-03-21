@@ -166,6 +166,11 @@ void js_pluginx_chinatelecom_IAPChinaTelecom_finalize(JSFreeOp *fop, JSObject *o
     JS_GET_NATIVE_PROXY(jsproxy, obj);
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
+
+        cocos2d::plugin::IAPChinaTelecom *nobj = static_cast<cocos2d::plugin::IAPChinaTelecom *>(nproxy->ptr);
+        if (nobj)
+            delete nobj;
+        
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
 }

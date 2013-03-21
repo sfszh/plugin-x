@@ -166,6 +166,11 @@ void js_pluginx_nd91_IAPNd91_finalize(JSFreeOp *fop, JSObject *obj) {
     JS_GET_NATIVE_PROXY(jsproxy, obj);
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
+
+        cocos2d::plugin::IAPNd91 *nobj = static_cast<cocos2d::plugin::IAPNd91 *>(nproxy->ptr);
+        if (nobj)
+            delete nobj;
+        
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
 }
