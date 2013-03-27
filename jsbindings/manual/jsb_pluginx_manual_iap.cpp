@@ -91,21 +91,14 @@ public:
         dataVal[1] = std_string_to_jsval(cx, strMsgInfo);
         
         JSObject* obj = m_pJSDelegate;
-        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "00000000000000000");
-        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "obj is %p", obj);
         JSBool bRet = JS_HasProperty(cx, obj, "payFailedLocally", &hasAction);
-        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "find return %d, ret is %d, ", bRet, hasAction);
         if (bRet && hasAction) {
-            __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "11111111111111");
             if(!JS_GetProperty(cx, obj, "payFailedLocally", &temp_retval)) {
-                __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "222222222222");
                 return;
             }
             if(temp_retval == JSVAL_VOID) {
-                __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "33333333333");
                 return;
             }
-            __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "4444444444444");
             JSAutoCompartment ac(cx, obj);
             JS_CallFunctionName(cx, obj, "payFailedLocally",
                                 2, dataVal, &retval);
