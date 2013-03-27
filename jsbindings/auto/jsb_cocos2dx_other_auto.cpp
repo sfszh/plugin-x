@@ -92,9 +92,9 @@ void js_cocos2dx_other_CCApplicationProtocol_finalize(JSFreeOp *fop, JSObject *o
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::CCApplicationProtocol *nobj = static_cast<cocos2d::CCApplicationProtocol *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::CCApplicationProtocol *nobj = static_cast<cocos2d::CCApplicationProtocol *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
@@ -241,9 +241,9 @@ void js_cocos2dx_other_CCApplication_finalize(JSFreeOp *fop, JSObject *obj) {
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::CCApplication *nobj = static_cast<cocos2d::CCApplication *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::CCApplication *nobj = static_cast<cocos2d::CCApplication *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }

@@ -574,9 +574,9 @@ void js_pluginx_umeng_AnalyticsUmeng_finalize(JSFreeOp *fop, JSObject *obj) {
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::AnalyticsUmeng *nobj = static_cast<cocos2d::plugin::AnalyticsUmeng *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::AnalyticsUmeng *nobj = static_cast<cocos2d::plugin::AnalyticsUmeng *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }

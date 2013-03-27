@@ -167,9 +167,9 @@ void js_pluginx_chinaunicom_online_IAPChinaUnicomOL_finalize(JSFreeOp *fop, JSOb
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::IAPChinaUnicomOL *nobj = static_cast<cocos2d::plugin::IAPChinaUnicomOL *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::IAPChinaUnicomOL *nobj = static_cast<cocos2d::plugin::IAPChinaUnicomOL *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }

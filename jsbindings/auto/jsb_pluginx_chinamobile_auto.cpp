@@ -167,9 +167,9 @@ void js_pluginx_chinamobile_IAPChinaMobile_finalize(JSFreeOp *fop, JSObject *obj
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::IAPChinaMobile *nobj = static_cast<cocos2d::plugin::IAPChinaMobile *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::IAPChinaMobile *nobj = static_cast<cocos2d::plugin::IAPChinaMobile *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }

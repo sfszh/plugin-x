@@ -148,9 +148,9 @@ void js_pluginx_protocols_PluginProtocol_finalize(JSFreeOp *fop, JSObject *obj) 
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::PluginProtocol *nobj = static_cast<cocos2d::plugin::PluginProtocol *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::PluginProtocol *nobj = static_cast<cocos2d::plugin::PluginProtocol *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
@@ -307,9 +307,9 @@ void js_pluginx_protocols_PluginManager_finalize(JSFreeOp *fop, JSObject *obj) {
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::PluginManager *nobj = static_cast<cocos2d::plugin::PluginManager *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::PluginManager *nobj = static_cast<cocos2d::plugin::PluginManager *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
@@ -644,9 +644,9 @@ void js_pluginx_protocols_ProtocolAnalytics_finalize(JSFreeOp *fop, JSObject *ob
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::ProtocolAnalytics *nobj = static_cast<cocos2d::plugin::ProtocolAnalytics *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::ProtocolAnalytics *nobj = static_cast<cocos2d::plugin::ProtocolAnalytics *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
@@ -875,9 +875,9 @@ void js_pluginx_protocols_ProtocolIAP_finalize(JSFreeOp *fop, JSObject *obj) {
     if (jsproxy) {
         JS_GET_PROXY(nproxy, jsproxy->ptr);
 
-        cocos2d::plugin::ProtocolIAP *nobj = static_cast<cocos2d::plugin::ProtocolIAP *>(nproxy->ptr);
-        if (nobj)
-            delete nobj;
+//        cocos2d::plugin::ProtocolIAP *nobj = static_cast<cocos2d::plugin::ProtocolIAP *>(nproxy->ptr);
+//        if (nobj)
+//            delete nobj;
         
         JS_REMOVE_PROXY(nproxy, jsproxy);
     }
