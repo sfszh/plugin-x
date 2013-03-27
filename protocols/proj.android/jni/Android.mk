@@ -12,6 +12,7 @@ $(addprefix ../../platform/android/, \
     PluginUtils.cpp \
     ProtocolAnalytics.cpp \
     ProtocolIAP.cpp \
+    ProtocolIAPOnLine.cpp \
 ) \
 ../../PluginManager.cpp \
 ../../RegisterPlugin.cpp \
