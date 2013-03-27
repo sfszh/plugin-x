@@ -1,6 +1,7 @@
 #include "jsb_pluginx_manual_iap.h"
 #include "jsb_pluginx_basic_conversions.h"
 #include "jsb_pluginx_spidermonkey_specifics.h"
+#include "ProtocolIAPOnLine.h"
 
 using namespace pluginx;
 
@@ -65,6 +66,72 @@ JSBool js_pluginx_ProtocolIAP_setResultListener(JSContext *cx, uint32_t argc, js
         Pluginx_PurchaseResult* nativeDelegate = new Pluginx_PurchaseResult();
         nativeDelegate->setJSDelegate(jsDelegate);
         cocos2d::plugin::ProtocolIAP::setResultListener(nativeDelegate);
+        
+        JS_SET_RVAL(cx, vp, JSVAL_VOID);
+        return JS_TRUE;
+    }
+
+    JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+    return JS_FALSE;
+}
+
+class Pluginx_PurchaseLocalResult : public cocos2d::plugin::LocalResultListener
+{
+public:
+    virtual void payFailedLocally(cocos2d::plugin::EPayResult ret, const char* msg)
+    {
+        JSContext* cx = s_cx;
+
+        JSBool hasAction;
+        jsval retval;
+        jsval temp_retval;
+        jsval dataVal[2];
+        dataVal[0] = INT_TO_JSVAL(ret);
+        std::string strMsgInfo = msg;
+        dataVal[1] = std_string_to_jsval(cx, strMsgInfo);
+        
+        JSObject* obj = m_pJSDelegate;
+        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "00000000000000000");
+        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "obj is %p", obj);
+        JSBool bRet = JS_HasProperty(cx, obj, "payFailedLocally", &hasAction);
+        __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "find return %d, ret is %d, ", bRet, hasAction);
+        if (bRet && hasAction) {
+            __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "11111111111111");
+            if(!JS_GetProperty(cx, obj, "payFailedLocally", &temp_retval)) {
+                __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "222222222222");
+                return;
+            }
+            if(temp_retval == JSVAL_VOID) {
+                __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "33333333333");
+                return;
+            }
+            __android_log_print(ANDROID_LOG_DEBUG, "payFailedLocally", "4444444444444");
+            JSAutoCompartment ac(cx, obj);
+            JS_CallFunctionName(cx, obj, "payFailedLocally",
+                                2, dataVal, &retval);
+        }
+    }
+
+    void setJSDelegate(JSObject* pJSDelegate)
+    {
+        m_pJSDelegate = pJSDelegate;
+    }
+
+private:
+    JSObject* m_pJSDelegate;
+};
+
+JSBool js_pluginx_ProtocolIAPOnLine_setLocalResultListener(JSContext *cx, uint32_t argc, jsval *vp)
+{
+    s_cx = cx;
+    jsval *argv = JS_ARGV(cx, vp);
+    JSBool ok = JS_TRUE;
+    if (argc == 1) {
+        // save the delegate
+        JSObject *jsDelegate = JSVAL_TO_OBJECT(argv[0]);
+        Pluginx_PurchaseLocalResult* nativeDelegate = new Pluginx_PurchaseLocalResult();
+        nativeDelegate->setJSDelegate(jsDelegate);
+        cocos2d::plugin::ProtocolIAPOnLine::setLocalResultListener(nativeDelegate);
         
         JS_SET_RVAL(cx, vp, JSVAL_VOID);
         return JS_TRUE;

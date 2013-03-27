@@ -218,3 +218,59 @@ getPluginName : function () {},
 payResult : function () {},
 
 };
+
+/**
+ * @class ProtocolIAPOnLine
+ */
+plugin.ProtocolIAPOnLine = {
+
+/**
+ * @method initDeveloperInfo
+ * @param {TDeveloperInfo}
+ */
+initDeveloperInfo : function () {},
+
+/**
+ * @method getPluginVersion
+ * @return A value converted from C/C++ "const char*"
+ */
+getPluginVersion : function () {},
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ */
+init : function () {},
+
+/**
+ * @method payForProduct
+ * @param {TProductInfo}
+ */
+payForProduct : function () {},
+
+/**
+ * @method getSDKVersion
+ * @return A value converted from C/C++ "const char*"
+ */
+getSDKVersion : function () {},
+
+/**
+ * @method setDebugMode
+ * @param {bool}
+ */
+setDebugMode : function () {},
+
+/**
+ * @method getPluginName
+ * @return A value converted from C/C++ "const char*"
+ */
+getPluginName : function () {},
+
+/**
+ * @method payFailedLocally
+ * @param {cocos2d::plugin::EPayResult}
+ * @param {const char*}
+ */
+payFailedLocally : function () {},
+
+};

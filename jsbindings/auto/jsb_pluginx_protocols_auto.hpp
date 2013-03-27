@@ -67,5 +67,21 @@ JSBool js_pluginx_protocols_ProtocolIAP_getSDKVersion(JSContext *cx, uint32_t ar
 JSBool js_pluginx_protocols_ProtocolIAP_setDebugMode(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_pluginx_protocols_ProtocolIAP_getPluginName(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_pluginx_protocols_ProtocolIAP_payResult(JSContext *cx, uint32_t argc, jsval *vp);
+
+extern JSClass  *jsb_ProtocolIAPOnLine_class;
+extern JSObject *jsb_ProtocolIAPOnLine_prototype;
+
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_pluginx_protocols_ProtocolIAPOnLine_finalize(JSContext *cx, JSObject *obj);
+void js_register_pluginx_protocols_ProtocolIAPOnLine(JSContext *cx, JSObject *global);
+void register_all_pluginx_protocols(JSContext* cx, JSObject* obj);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_initDeveloperInfo(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_getPluginVersion(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_init(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_payForProduct(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_getSDKVersion(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_setDebugMode(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_getPluginName(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_pluginx_protocols_ProtocolIAPOnLine_payFailedLocally(JSContext *cx, uint32_t argc, jsval *vp);
 #endif
 
