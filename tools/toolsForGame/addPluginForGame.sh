@@ -47,6 +47,10 @@ if [ -d "${TARGET_ROOT}" ]; then
     APP_MK_FILE_PATH="${GAME_PROJECT_DIR}"/jni/Application.mk
     ${SHELL_DIR}/modifyAppMk.sh "${APP_MK_FILE_PATH}"
     
+    # Combin ForRes directory to the res directory of game project
+    GAME_RES_DIR="${GAME_PROJECT_DIR}"/res
+    ${SHELL_DIR}/modifyRes.sh "${GAME_RES_DIR}"
+    
     # get system dir
     SYS_TARGET_ROOT=$(getPathForSystem ${TARGET_ROOT})
     SYS_SHELL_DIR=$(getPathForSystem ${SHELL_DIR})
