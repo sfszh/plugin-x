@@ -118,4 +118,9 @@ if [ -d "${ANDROID_PROJ_DIR}/ForRes" ]; then
     cp -rf "${ANDROID_PROJ_DIR}/ForRes" "${TARGET_DIR}/android"
 fi
 
+#copy ForAssets directory to publish directory
+if [ -d "${ANDROID_PROJ_DIR}/ForAssets" ]; then
+    cp -rf "${ANDROID_PROJ_DIR}/ForAssets" "${TARGET_DIR}/android"
+fi
+
 popd
